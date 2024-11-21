@@ -1,0 +1,15 @@
+.container {
+	width: 16px !important;
+	height: 16px !important;
+	border-radius: 4px;
+	border: 1px solid var(--grey-color-500);
+	background-color: var(--grey-color-25);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.active {
+	background-color: var(--blue-color);
+}

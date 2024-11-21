@@ -1,0 +1,135 @@
+.container {
+	position: relative;
+	width: fit-content;
+}
+
+.button-container {
+	display: flex;
+	overflow: hidden;
+}
+
+.button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 6px;
+	font-weight: 500;
+	transition: all 0.2s;
+	padding: 10px 15px;
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+	&.with-extra {
+		border-inline-end: none;
+		border-end-end-radius: 0;
+		border-start-end-radius: 0;
+	}
+}
+
+.primary {
+	background-color: var(--blue-color);
+	color: var(--white-color);
+	&:hover {
+		background-color: var(--primary-color);
+	}
+}
+
+.danger {
+	background-color: var(--error-color);
+	color: var(--white-color);
+	&:hover {
+		background-color: var(--error-color-dark);
+	}
+}
+
+.secondary {
+	color: var(--grey-color-A150);
+	background-color: var(--white-color);
+	border: 1px solid var(--grey-color-400);
+
+	&:hover {
+		background-color: var(--grey-color-300);
+	}
+}
+
+.link {
+	color: var(--primary-color-dark);
+	font-weight: 500;
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.fit {
+	width: fit-content;
+}
+
+.fill {
+	width: 100%;
+}
+
+.normal-height {
+	height: 40px;
+}
+
+.large-height {
+	height: 44px;
+}
+
+.small-height {
+	height: 34px;
+}
+
+.normal-text {
+	font-size: 0.875rem;
+}
+
+.small-text {
+	font-size: 0.75rem;
+}
+
+.extras {
+	border: 1px solid var(--grey-color-300);
+	padding: 10px;
+	border-end-end-radius: 6px;
+	border-start-end-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+	width: fit-content;
+	&:hover {
+		background-color: var(--grey-color-300);
+	}
+	&.active {
+		border-color: var(--primary-color);
+		border-width: 2px;
+	}
+}
+
+.extras-menu {
+	width: fit-content;
+	border-radius: 6px;
+	border: 1px solid var(--grey-color-300);
+	padding: 4px 0px;
+	margin-top: 8px;
+	position: absolute;
+	background-color: var(--white-color);
+}
+
+.extra-action {
+	font-weight: 400;
+	font-size: 1rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 16px;
+}
+
+.extra-danger {
+	color: var(--error-color);
+	&:hover {
+		background-color: var(--error-color-3);
+		color: var(--white-color);
+	}
+}

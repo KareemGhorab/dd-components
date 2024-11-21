@@ -1,0 +1,64 @@
+@import '@/styles/mixins';
+
+.container {
+	position: relative;
+}
+
+.value {
+	background-color: var(--white-color);
+	border-radius: 6px;
+	border: 1px solid var(--grey-color-300);
+	padding: 10px 14px;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	cursor: pointer;
+}
+
+.chevron {
+	transition: transform 0.2s ease-in-out;
+}
+
+.chevron-open {
+	transform: rotate(180deg);
+}
+
+.active {
+	background-color: var(--blue-color-light);
+}
+
+.list-container {
+	position: absolute;
+	z-index: 1;
+	min-width: 100%;
+}
+
+.list {
+	background-color: var(--white-color);
+	border-radius: 8px;
+	border: 1px solid var(--grey-color-300);
+	margin-top: 8px;
+	max-height: 200px;
+	overflow-y: auto;
+
+	@include fade-up;
+	animation: fade-up 0.2s ease-in-out;
+}
+
+.searchbar-container {
+}
+
+.searchbar {
+	border: none !important;
+}
+
+.option {
+	padding: 10px 14px;
+	cursor: pointer;
+	&:not(:last-child) {
+		border-bottom: 1px solid var(--grey-color-300);
+	}
+	&:hover {
+		background-color: var(--blue-color-med);
+	}
+}

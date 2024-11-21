@@ -1,0 +1,103 @@
+$screen-min-xs: 600px;
+$screen-min-sm: 768px;
+$screen-min-md: 992px;
+$screen-min-lg: 1200px;
+$screen-min-xl: 1366px;
+$screen-min-xxl: 1441px;
+
+@mixin screen-min-mobile {
+    // mobile phone
+    @media (min-width: #{$screen-min-xs}) {
+        @content;
+    }
+}
+
+@mixin screen-min-tablet {
+    // tablet
+    @media (min-width: #{$screen-min-sm}) {
+        @content;
+    }
+}
+
+@mixin screen-min-desktop {
+    // small desktop
+    @media (min-width: #{$screen-min-md}) {
+        @content;
+    }
+}
+
+@mixin screen-min-desktop-lg {
+    // standard desktop
+    @media (min-width: #{$screen-min-lg}) {
+        @content;
+    }
+}
+
+@mixin screen-min-desktop-xl {
+    // large desktop
+    @media (min-width: #{$screen-min-xl}) {
+        @content;
+    }
+}
+
+@mixin screen-min-desktop-xxl {
+    // fancy desktop
+    @media (min-width: #{$screen-min-xxl}) {
+        @content;
+    }
+}
+
+@mixin zoom-in {
+    @keyframes zoom-in {
+        0% {
+            opacity: 0;
+            transform: scale(0, 0);
+        }
+
+        60% {
+            opacity: 0;
+            transform: scale(0.5, 0.5);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1, 1);
+        }
+    }
+}
+
+@mixin fade-up($translateY: 30px) {
+    @keyframes fade-up {
+        0% {
+            opacity: 0;
+            transform: translateY($translateY);
+        }
+
+        60% {
+            opacity: 0.5;
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+@mixin fade-down($translateY: -10px) {
+    @keyframes fade-up {
+        0% {
+            opacity: 0;
+            transform: translateY(&translateY);
+        }
+
+        60% {
+            opacity: 0.5;
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}

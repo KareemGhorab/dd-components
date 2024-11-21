@@ -1,0 +1,26 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	width: 100%;
+}
+
+.tabs {
+	display: flex;
+	gap: 32px;
+	border-bottom: 1px solid var(--grey-color-300);
+	padding: 0px 32px;
+}
+
+.tab {
+	color: var(--grey-color-850);
+	font-weight: 500;
+	font-size: 0.875rem;
+	cursor: pointer;
+	padding: 9px 4px;
+}
+
+.active {
+	border-bottom: 1.5px solid var(--primary-color);
+	color: var(--primary-color);
+}

@@ -1,0 +1,17 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.title {
+	font-weight: 500;
+	font-size: 0.875rem;
+	color: var(--grey-color-850);
+}
+
+.subtitle {
+	font-weight: 500;
+	font-size: 1rem;
+	color: var(--grey-color-A400);
+}

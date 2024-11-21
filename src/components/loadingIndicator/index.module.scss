@@ -1,0 +1,88 @@
+.container {
+	position: relative;
+	border-radius: 50%;
+
+	&.normal-size {
+		width: 26px;
+		height: 26px;
+		& > div {
+			width: 4.5px;
+			height: 4.5px;
+		}
+	}
+
+	&.small-size {
+		width: 20px;
+		height: 20px;
+		& > div {
+			width: 3px;
+			height: 3px;
+		}
+	}
+
+	& > div {
+		border-radius: 50%;
+		background-color: var(--grey-color-700);
+		position: absolute;
+		animation: loading 0.8s linear infinite;
+
+		&:nth-child(1) {
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		&:nth-child(2) {
+			top: 12.5%;
+			right: 12.5%;
+		}
+
+		&:nth-child(3) {
+			top: 50%;
+			right: 0;
+			transform: translateY(-50%);
+		}
+
+		&:nth-child(4) {
+			bottom: 12.5%;
+			right: 12.5%;
+		}
+
+		&:nth-child(5) {
+			bottom: 0;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		&:nth-child(6) {
+			bottom: 12.5%;
+			left: 12.5%;
+		}
+
+		&:nth-child(7) {
+			top: 50%;
+			left: 0;
+			transform: translateY(-50%);
+		}
+
+		&:nth-child(8) {
+			top: 12.5%;
+			left: 12.5%;
+		}
+	}
+}
+
+@for $i from 1 through 8 {
+	.container > div:nth-child(#{$i}) {
+		animation-delay: $i * 0.1s;
+	}
+}
+
+@keyframes loading {
+	0% {
+		background-color: var(--white-color);
+	}
+	100% {
+		background-color: var(--grey-color-700);
+	}
+}
