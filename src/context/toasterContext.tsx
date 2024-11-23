@@ -8,7 +8,7 @@ import React, {
 	useState,
 } from 'react'
 
-export type TToasterVariant = 'success' | 'error' | 'primary'
+export type TToasterVariant = 'success' | 'danger' | 'primary'
 export type TExtraAction = {
 	text: string
 	onClick: () => void
@@ -52,7 +52,7 @@ export const ToasterProvider: FC<PropsWithChildren> = ({ children }) => {
 		setVariant(variant)
 		if (extraAction) {
 			setExtraAction(extraAction)
-		}
+		} else setExtraAction(undefined)
 	}
 
 	return (
@@ -63,7 +63,7 @@ export const ToasterProvider: FC<PropsWithChildren> = ({ children }) => {
 				message,
 				open,
 				setOpen,
-				extraAction
+				extraAction,
 			}}
 		>
 			{children}

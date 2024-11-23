@@ -1,12 +1,12 @@
 import { FC, ReactNode } from 'react'
 import styles from './index.module.scss'
 import clsx from 'clsx'
+import { TVariant } from '@/types/components'
 
-export type TTagVariant = 'danger' | 'warning' | 'success' | 'secondary'
 export type TTagType = 'solid' | 'outline'
 
 type TProps = {
-	variant: TTagVariant
+	variant: TVariant
 	text: string
 	icon?: ReactNode
 	type?: TTagType

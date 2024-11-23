@@ -1,0 +1,31 @@
+.container {
+	appearance: none;
+	-webkit-appearance: none;
+	position: relative;
+	width: 20px;
+	height: 20px;
+	border: 1px solid var(--grey-color-550);
+	border-radius: 50%;
+	background-color: var(--grey-color-25);
+	outline: none;
+	cursor: pointer;
+
+	&:checked {
+		border: 1.25px solid var(--primary-color);
+		&::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 7.5px;
+			height: 7.5px;
+			border-radius: 50%;
+			background-color: var(--blue-color); // Inner dot color
+		}
+	}
+
+	&:focus {
+		box-shadow: 0 0 3px 2px var(--blue-color-med);
+	}
+}

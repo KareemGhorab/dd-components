@@ -20,27 +20,40 @@
 .danger {
 	border-color: var(--error-color);
 	color: var(--error-color);
-}
-
-.danger.solid {
-	background-color: var(--error-color-light);
+	&.solid {
+		background-color: var(--error-color-light);
+	}
 }
 
 .warning {
 	border-color: var(--warning-color-dark);
 	color: var(--warning-color-dark);
-}
-
-.warning.solid {
-	background-color: var(--warning-color-light);
+	&.solid {
+		background-color: var(--warning-color-light);
+	}
 }
 
 .success {
 	border-color: var(--success-color);
 	color: var(--success-color-dark-2);
+	&.solid {
+		background-color: var(--grey-color-150);
+		color: var(--grey-color-A400);
+	}
 }
 
-.secondary.solid {
-	background-color: var(--grey-color-150);
-	color: var(--grey-color-A400);
+.primary {
+	border-color: var(--primary-color);
+	color: var(--primary-color);
+	&.solid {
+		background-color: var(--blue-color-200);
+	}
+}
+
+.secondary {
+	border-color: var(--grey-color-950);
+	color: var(--grey-color-950);
+	&.solid {
+		background-color: var(--grey-color-150);
+	}
 }

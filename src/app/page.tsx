@@ -13,6 +13,7 @@ import Modal from '@/components/modal'
 import ModalHr from '@/components/modal/modalHr'
 import Phone from '@/components/phone'
 import Product from '@/components/product'
+import RadioOption from '@/components/radioOptions'
 import Select from '@/components/select'
 import Table from '@/components/table'
 import Tabs from '@/components/tabs'
@@ -27,13 +28,14 @@ const MainPage = () => {
 	const [options, setOptions] = useState<string[]>(['first', 'second'])
 	const [modalOpen, setModalOpen] = useState<boolean>(false)
 	const { toast } = useToaster()
+	const [radioValue, setRadioValue] = useState<string>('first')
 
 	return (
 		<div style={{ padding: '32px' }}>
 			<Card>
 				<Header
-					title="Direct Delivery Shipments"
-					subtitle="Here, you can track and manage your direct delivery orders"
+					title='Direct Delivery Shipments'
+					subtitle='Here, you can track and manage your direct delivery orders'
 				>
 					<div>test</div>
 					<div>test</div>
@@ -48,27 +50,27 @@ const MainPage = () => {
 					}}
 				>
 					<LoadingIndicator />
-					<Button variant="primary">test</Button>
-					<Button variant="primary" disabled>
+					<Button variant='primary'>test</Button>
+					<Button variant='primary' disabled>
 						test
 					</Button>
-					<Button variant="primary" loading>
+					<Button variant='primary' loading>
 						test
 					</Button>
-					<Button variant="secondary">test</Button>
-					<Button variant="secondary" disabled>
+					<Button variant='secondary'>test</Button>
+					<Button variant='secondary' disabled>
 						test
 					</Button>
-					<Button variant="danger">test</Button>
-					<Button variant="link">test</Button>
+					<Button variant='danger'>test</Button>
+					<Button variant='link'>test</Button>
 					<Button
-						variant="secondary"
+						variant='secondary'
 						extraActions={[
 							{
 								variant: 'danger',
 								onClick: () => {},
 								text: 'Delete',
-								icon: <LoadingIndicator size="small" />,
+								icon: <LoadingIndicator size='small' />,
 							},
 						]}
 					>
@@ -81,6 +83,8 @@ const MainPage = () => {
 							{
 								label: 'tab1',
 								key: 1,
+								count: 4,
+								variant: 'secondary',
 								children: (
 									<Table
 										emptyState={{
@@ -144,6 +148,8 @@ const MainPage = () => {
 							{
 								label: 'tab2',
 								key: 2,
+								count: 0,
+								variant: 'danger',
 								children: (
 									<Table
 										emptyState={{
@@ -191,30 +197,30 @@ const MainPage = () => {
 						]}
 					/>
 
-					<Date date="2024-11-19T12:30:00Z" variant="dotted" />
-					<Date date="2024-11-19T12:30:00Z" variant="full" />
-					<Date date="2024-11-19T12:30:00" variant="full" />
+					<Date date='2024-11-19T12:30:00Z' variant='dotted' />
+					<Date date='2024-11-19T12:30:00Z' variant='full' />
+					<Date date='2024-11-19T12:30:00' variant='full' />
 
-					<Marketplace marketplace="noon" />
-					<Marketplace marketplace="namshi_v2" />
-					<Marketplace marketplace="minutes" />
+					<Marketplace marketplace='noon' />
+					<Marketplace marketplace='namshi_v2' />
+					<Marketplace marketplace='minutes' />
 
-					<Phone phone="+20123456789" />
+					<Phone phone='+20123456789' />
 
-					<Tag variant="danger" text="danger" />
+					<Tag variant='danger' text='danger' />
 					<Tag
-						variant="danger"
-						text="danger outline"
-						type="outline"
+						variant='danger'
+						text='danger outline'
+						type='outline'
 					/>
-					<Tag variant="warning" text="warning" />
+					<Tag variant='warning' text='warning' />
 					<Tag
-						variant="warning"
-						text="warning outline"
-						type="outline"
+						variant='warning'
+						text='warning outline'
+						type='outline'
 					/>
-					<Tag variant="secondary" text="secondary" />
-					<Tag variant="success" text="success" type="outline" />
+					<Tag variant='secondary' text='secondary' />
+					<Tag variant='success' text='success' type='outline' />
 
 					<Select
 						options={['first', 'second', 'third']}
@@ -268,7 +274,7 @@ const MainPage = () => {
 					/>
 
 					<Button
-						variant="primary"
+						variant='primary'
 						onClick={() => setModalOpen(true)}
 					>
 						Open Modal
@@ -286,29 +292,29 @@ const MainPage = () => {
 							marginTop: 12,
 						}}
 					>
-						<Details title="Test title" subtitle="Test subtitle" />
+						<Details title='Test title' subtitle='Test subtitle' />
 						<Details
-							title="Test title 2"
-							subtitle="Test subtitle 2"
+							title='Test title 2'
+							subtitle='Test subtitle 2'
 						/>
 					</div>
 
 					<FileUpload />
 
 					<Button
-						variant="primary"
+						variant='primary'
 						onClick={() => toast('Test Primary', 'primary')}
 					>
 						Open Primary Toaster
 					</Button>
 					<Button
-						variant="danger"
-						onClick={() => toast('Test Error', 'error')}
+						variant='danger'
+						onClick={() => toast('Test Error', 'danger')}
 					>
 						Open Error Toaster
 					</Button>
 					<Button
-						variant="secondary"
+						variant='secondary'
 						onClick={() =>
 							toast('Test Success', 'success', {
 								onClick: () => alert('clicked'),
@@ -320,12 +326,44 @@ const MainPage = () => {
 					</Button>
 
 					<Product
-						img="https://picsum.photos/200/300"
-						title="Apple · Apple iphone 14, Single SIM, 128Gb, 4Gb Ram, 5G - Starlight"
-						subtitle="106058137P"
+						img='https://picsum.photos/200/300'
+						title='Apple · Apple iphone 14, Single SIM, 128Gb, 4Gb Ram, 5G - Starlight'
+						subtitle='106058137P'
 					/>
 
-					<DetailCard title="AWB Number">PE79532043221A</DetailCard>
+					<DetailCard title='AWB Number'>PE79532043221A</DetailCard>
+
+					<div
+						style={{
+							width: '100%',
+							padding: 16,
+							display: 'flex',
+							flexDirection: 'column',
+							gap: 16,
+						}}
+					>
+						<RadioOption
+							name='name'
+							value='first'
+							label='First Option'
+							checked={radioValue === 'first'}
+							onClick={(value) => setRadioValue(value)}
+						/>
+						<RadioOption
+							name='name'
+							value='second'
+							label='Second Option'
+							checked={radioValue === 'second'}
+							onClick={(value) => setRadioValue(value)}
+						/>
+						<RadioOption
+							name='name'
+							value='third'
+							label='Third Option'
+							checked={radioValue === 'third'}
+							onClick={(value) => setRadioValue(value)}
+						/>
+					</div>
 
 					<div style={{ marginTop: 24 }} />
 				</div>

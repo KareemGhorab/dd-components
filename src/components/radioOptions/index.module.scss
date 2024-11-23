@@ -1,0 +1,17 @@
+.container {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	justify-content: flex-start;
+	width: 100%;
+	padding: 16px;
+	border: 1px solid var(--grey-color-550);
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.checked {
+	border: 2px solid var(--primary-color);
+
+	background-color: var(--primary-color-light);
+}

@@ -1,6 +1,8 @@
 import { FC, ReactNode, useState } from 'react'
 import styles from './index.module.scss'
 import clsx from 'clsx'
+import Tag from '../tag'
+import { TVariant } from '@/types/components'
 
 type TProps = {
 	defaultActiveTab: number
@@ -8,6 +10,8 @@ type TProps = {
 		label: string
 		key: number
 		children: ReactNode
+		variant?: TVariant
+		count?: number
 	}[]
 	onChange?: (active: number) => void
 }
@@ -30,6 +34,16 @@ const Tabs: FC<TProps> = ({ defaultActiveTab, tabs, onChange }) => {
 						}}
 					>
 						{tab.label}
+						{tab.count !== undefined ? (
+							<Tag
+								variant={
+									tab.key === active
+										? 'primary'
+										: tab.variant || 'secondary'
+								}
+								text={tab.count.toString()}
+							/>
+						) : null}
 					</div>
 				))}
 			</div>

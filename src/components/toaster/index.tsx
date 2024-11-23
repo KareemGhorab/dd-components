@@ -35,16 +35,16 @@ const Toaster = () => {
 						onClick={() => setOpen(false)}
 						className={clsx(styles.x, styles['x-success'])}
 					>
-						<X color="#BBF7D0" />
+						<X color='#BBF7D0' />
 					</div>
 				)
-			case 'error':
+			case 'danger':
 				return (
 					<div
 						onClick={() => setOpen(false)}
-						className={clsx(styles.x, styles['x-error'])}
+						className={clsx(styles.x, styles['x-danger'])}
 					>
-						<X color="#fee2e2" />
+						<X color='#fee2e2' />
 					</div>
 				)
 			case 'primary': {
@@ -66,8 +66,8 @@ const Toaster = () => {
 				text={extraAction.text}
 				icon={extraAction.icon}
 				onClick={extraAction.onClick}
-				variant="secondary"
-				height="small"
+				variant='secondary'
+				height='small'
 			/>
 		)
 	}
