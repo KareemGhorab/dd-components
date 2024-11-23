@@ -11,6 +11,7 @@ import LoadingIndicator from '@/components/loadingIndicator'
 import Marketplace from '@/components/marketplace'
 import Modal from '@/components/modal'
 import ModalHr from '@/components/modal/modalHr'
+import Pagination from '@/components/pagination'
 import Phone from '@/components/phone'
 import Product from '@/components/product'
 import RadioOption from '@/components/radioOptions'
@@ -19,7 +20,9 @@ import Table from '@/components/table'
 import Tabs from '@/components/tabs'
 import Tag from '@/components/tag'
 import useToaster from '@/context/toasterContext'
+import useUpdateQueryParams from '@/hooks/useUpdateQueryParams'
 import CheckMarkLarge from '@/svg/checkMarkLarge'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 
 const MainPage = () => {
@@ -29,6 +32,11 @@ const MainPage = () => {
 	const [modalOpen, setModalOpen] = useState<boolean>(false)
 	const { toast } = useToaster()
 	const [radioValue, setRadioValue] = useState<string>('first')
+	const searchParams = useSearchParams()
+	const updateQueryParams = useUpdateQueryParams()
+
+	const page = +(searchParams.get('page') || 1)
+	const limit = +(searchParams.get('limit') || 25)
 
 	return (
 		<div style={{ padding: '32px' }}>
@@ -195,6 +203,19 @@ const MainPage = () => {
 								),
 							},
 						]}
+					/>
+
+					<Pagination
+						page={page}
+						totalRows={99}
+						defaultPageSize={limit}
+						onChangePageSize={(ps) =>
+							updateQueryParams('limit', ps.toString())
+						}
+						onChangePage={(p) =>
+							updateQueryParams('page', p.toString())
+						}
+						pageSizeOptions={[25, 50, 100]}
 					/>
 
 					<Date date='2024-11-19T12:30:00Z' variant='dotted' />
