@@ -22,7 +22,7 @@ import Tag from '@/components/tag'
 import useToaster from '@/context/toasterContext'
 import useUpdateQueryParams from '@/hooks/useUpdateQueryParams'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 const MainPage = () => {
 	const [selectedRows, setSelectedRows] = useState<number[]>([])
@@ -38,14 +38,6 @@ const MainPage = () => {
 	const [pageSize, setPageSize] = useState<number>(
 		+(searchParams.get('limit') || 25)
 	)
-
-	useEffect(() => {
-		updateQueryParams('limit', pageSize.toString())
-	}, [pageSize])
-
-	useEffect(() => {
-		updateQueryParams('page', page.toString())
-	}, [page])
 
 	return (
 		<div style={{ padding: '32px' }}>
@@ -220,12 +212,15 @@ const MainPage = () => {
 						pageSize={pageSize}
 						setPageSize={setPageSize}
 						onChangePage={(p) =>
-							updateQueryParams('page', p.toString())
+							updateQueryParams({ page: p.toString() })
 						}
 						totalRows={99}
 						pageSizeOptions={[25, 50, 100]}
 						onChangePageSize={(ps) =>
-							updateQueryParams('limit', ps.toString())
+							updateQueryParams({
+								limit: ps.toString(),
+								page: '1',
+							})
 						}
 					/>
 

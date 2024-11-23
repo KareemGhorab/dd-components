@@ -1,8 +1,8 @@
 import { Dispatch, FC, SetStateAction, useEffect } from 'react'
+import clsx from 'clsx'
+import DownChevron from '@/svg/downChevron'
 import Select from '../select'
 import styles from './index.module.scss'
-import DownChevron from '@/svg/downChevron'
-import clsx from 'clsx'
 
 type TProps = {
 	totalRows: number
@@ -27,19 +27,33 @@ const Pagination: FC<TProps> = ({
 }) => {
 	const totalPages = Math.ceil(totalRows / pageSize)
 
-	useEffect(() => onChangePage(page), [page])
-	useEffect(() => onChangePageSize(page), [pageSize])
-
 	const handlePageChange = (p: number) => {
 		if (p > totalPages || p < 1) return
 		setPage(p)
 	}
 
+	const handlePageIncrement = () => {
+		setPage((p) => {
+			if (p >= totalPages) return p
+			return p + 1
+		})
+	}
+
+	const handlePageDecrement = () => {
+		setPage((p) => {
+			if (p <= 1) return p
+			return p - 1
+		})
+	}
+
 	const handlePageSizeChange = (ps: number) => {
 		if (!pageSizeOptions.includes(ps)) return
 		setPageSize(ps)
-		setPage(1)
+		handlePageChange(1)
 	}
+
+	useEffect(() => onChangePage(page), [page])
+	useEffect(() => onChangePageSize(pageSize), [pageSize])
 
 	return (
 		<div className={styles.container}>
@@ -62,7 +76,7 @@ const Pagination: FC<TProps> = ({
 					className={clsx({
 						[styles.disabled]: page === 1,
 					})}
-					onClick={() => handlePageChange(page - 1)}
+					onClick={() => handlePageDecrement()}
 				>
 					<DownChevron />
 				</div>
@@ -70,7 +84,7 @@ const Pagination: FC<TProps> = ({
 					className={clsx({
 						[styles.disabled]: page === totalPages,
 					})}
-					onClick={() => handlePageChange(page + 1)}
+					onClick={() => handlePageIncrement()}
 				>
 					<DownChevron />
 				</div>

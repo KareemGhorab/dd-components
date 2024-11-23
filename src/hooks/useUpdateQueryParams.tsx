@@ -5,9 +5,9 @@ const useUpdateQueryParams = () => {
 	const pathname = usePathname()
 	const searchParams = useSearchParams()
 
-	const updateQueryParams = (key: string, value: string) => {
+	const updateQueryParams = (query: { [key: string]: string }) => {
 		const params = new URLSearchParams(searchParams.toString())
-		params.set(key, value)
+		Object.entries(query).forEach(([key, value]) => params.set(key, value))
 		replace(`${pathname}?${params.toString()}`, {
 			scroll: false,
 		})
