@@ -1,38 +1,44 @@
-import { FC, useState } from 'react'
+import { Dispatch, FC, SetStateAction, useEffect } from 'react'
 import Select from '../select'
 import styles from './index.module.scss'
 import DownChevron from '@/svg/downChevron'
 import clsx from 'clsx'
 
 type TProps = {
-	page: number
 	totalRows: number
-	onChangePage: (page: number) => void
-	onChangePageSize: (pageSize: number) => void
 	pageSizeOptions: number[]
-	defaultPageSize: number
+	page: number
+	setPage: Dispatch<SetStateAction<number>>
+	onChangePage: (page: number) => void
+	pageSize: number
+	setPageSize: Dispatch<SetStateAction<number>>
+	onChangePageSize: (pageSize: number) => void
 }
 
 const Pagination: FC<TProps> = ({
-	onChangePage,
-	onChangePageSize,
-	page,
-	pageSizeOptions,
 	totalRows,
-	defaultPageSize,
+	pageSizeOptions,
+	page,
+	setPage,
+	onChangePage,
+	pageSize,
+	setPageSize,
+	onChangePageSize,
 }) => {
-	const [pageSize, setPageSize] = useState<number>(defaultPageSize)
-
 	const totalPages = Math.ceil(totalRows / pageSize)
 
-	const handlePageChange = (page: number) => {
-		if (page > totalPages || page < 1) return
-		onChangePage(page)
+	useEffect(() => onChangePage(page), [page])
+	useEffect(() => onChangePageSize(page), [pageSize])
+
+	const handlePageChange = (p: number) => {
+		if (p > totalPages || p < 1) return
+		setPage(p)
 	}
 
-	const handlePageSizeChange = (pageSize: number) => {
-		setPageSize(pageSize)
-		onChangePageSize(pageSize)
+	const handlePageSizeChange = (ps: number) => {
+		if (!pageSizeOptions.includes(ps)) return
+		setPageSize(ps)
+		setPage(1)
 	}
 
 	return (

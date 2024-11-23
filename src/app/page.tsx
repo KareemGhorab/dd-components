@@ -21,9 +21,8 @@ import Tabs from '@/components/tabs'
 import Tag from '@/components/tag'
 import useToaster from '@/context/toasterContext'
 import useUpdateQueryParams from '@/hooks/useUpdateQueryParams'
-import CheckMarkLarge from '@/svg/checkMarkLarge'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 const MainPage = () => {
 	const [selectedRows, setSelectedRows] = useState<number[]>([])
@@ -35,8 +34,18 @@ const MainPage = () => {
 	const searchParams = useSearchParams()
 	const updateQueryParams = useUpdateQueryParams()
 
-	const page = +(searchParams.get('page') || 1)
-	const limit = +(searchParams.get('limit') || 25)
+	const [page, setPage] = useState<number>(+(searchParams.get('page') || 1))
+	const [pageSize, setPageSize] = useState<number>(
+		+(searchParams.get('limit') || 25)
+	)
+
+	useEffect(() => {
+		updateQueryParams('limit', pageSize.toString())
+	}, [pageSize])
+
+	useEffect(() => {
+		updateQueryParams('page', page.toString())
+	}, [page])
 
 	return (
 		<div style={{ padding: '32px' }}>
@@ -207,15 +216,17 @@ const MainPage = () => {
 
 					<Pagination
 						page={page}
-						totalRows={99}
-						defaultPageSize={limit}
-						onChangePageSize={(ps) =>
-							updateQueryParams('limit', ps.toString())
-						}
+						setPage={setPage}
+						pageSize={pageSize}
+						setPageSize={setPageSize}
 						onChangePage={(p) =>
 							updateQueryParams('page', p.toString())
 						}
+						totalRows={99}
 						pageSizeOptions={[25, 50, 100]}
+						onChangePageSize={(ps) =>
+							updateQueryParams('limit', ps.toString())
+						}
 					/>
 
 					<Date date='2024-11-19T12:30:00Z' variant='dotted' />

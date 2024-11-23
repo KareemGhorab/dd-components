@@ -18,13 +18,13 @@ type TProps = {
 	| {
 			multiple?: false
 			value: string
-			onChange: (value: string | ((prev: string) => string)) => void
+			onChange: Dispatch<SetStateAction<string>>
 			renderValue?: (value: string) => ReactNode
 	  }
 	| {
 			multiple: true
 			value: string[]
-			onChange: (value: string[] | ((prev: string[]) => string[])) => void
+			onChange: Dispatch<SetStateAction<string[]>>
 			renderValue?: (value: string[]) => ReactNode
 	  }
 )
