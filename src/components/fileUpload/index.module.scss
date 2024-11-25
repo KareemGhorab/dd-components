@@ -2,4 +2,59 @@
 	border: 1px solid var(--grey-color-300);
 	border-radius: 8px;
 	padding: 8px;
+	display: flex;
+	gap: 8px;
+	width: 100%;
+	align-items: flex-start;
+	position: relative;
+	justify-content: space-between;
+}
+
+.sub-container {
+	display: flex;
+	align-items: flex-start;
+
+	&-upload {
+		gap: 8px;
+	}
+
+	&-remove {
+		gap: 12px;
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.title {
+	font-weight: 500;
+	font-size: 0.75rem;
+	color: var(--grey-color-A400);
+	line-height: 1.125rem;
+}
+
+.description {
+	font-weight: 400;
+	font-size: 0.75rem;
+	color: var(--grey-color-A150);
+	line-height: 1.125rem;
+}
+
+.upload-button {
+	margin-inline-start: auto;
+	font-weight: 400;
+	font-size: 0.75rem;
+	width: 100;
+	color: var(--grey-color-A150);
+}
+
+.remove-button {
+	margin-inline-start: auto;
+}
+
+.file-input {
+	display: none;
 }

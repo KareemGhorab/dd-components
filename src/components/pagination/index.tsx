@@ -52,8 +52,8 @@ const Pagination: FC<TProps> = ({
 		handlePageChange(1)
 	}
 
-	useEffect(() => onChangePage(page), [page])
 	useEffect(() => onChangePageSize(pageSize), [pageSize])
+	useEffect(() => onChangePage(page), [page])
 
 	return (
 		<div className={styles.container}>

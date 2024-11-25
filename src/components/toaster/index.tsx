@@ -12,6 +12,7 @@ const Toaster = () => {
 	const { message, variant, open, setOpen, extraAction } = useToaster()
 
 	useEffect(() => {
+		if (!open) return
 		const timer = setTimeout(() => setOpen(false), 5000)
 		return () => clearTimeout(timer)
 	}, [open, message, variant, extraAction])

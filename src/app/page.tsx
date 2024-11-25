@@ -29,6 +29,9 @@ const MainPage = () => {
 	const [option, setOption] = useState<string>('first')
 	const [options, setOptions] = useState<string[]>(['first', 'second'])
 	const [modalOpen, setModalOpen] = useState<boolean>(false)
+	const [file, setFile] = useState<File | null>(null)
+	const [fileErrors, setFileErrors] = useState<string[]>([])
+	const [fileUploading, setFileUploading] = useState<boolean>(false)
 	const { toast } = useToaster()
 	const [radioValue, setRadioValue] = useState<string>('first')
 	const searchParams = useSearchParams()
@@ -326,7 +329,30 @@ const MainPage = () => {
 						/>
 					</div>
 
-					<FileUpload />
+					<div style={{ width: 500 }}>
+						<FileUpload
+							buttonLabel='Upload POD'
+							title='Upload POD File'
+							description='This POD is for record-keeping only and doesn’t protect against customer disputes.'
+							file={file}
+							setFile={setFile}
+							errors={fileErrors}
+							setErrors={setFileErrors}
+							onFileRemoval={async () => {
+								setFileUploading(true)
+								setTimeout(() => {
+									setFileUploading(false)
+								}, 1000)
+							}}
+							onFileUpload={async (file) => {
+								setFileUploading(true)
+								setTimeout(() => {
+									setFileUploading(false)
+								}, 1000)
+							}}
+							isLoading={fileUploading}
+						/>
+					</div>
 
 					<Button
 						variant='primary'

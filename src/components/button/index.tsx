@@ -6,8 +6,8 @@ import clsx from 'clsx'
 import LoadingIndicator from '../loadingIndicator'
 import DownChevron from '@/svg/downChevron'
 import ClickAwayListener from '../clickAwayListener'
+import { TVariant } from '@/types/components'
 
-export type TButtonVariant = 'primary' | 'secondary' | 'danger' | 'link'
 export type TButtonExtraActionVariant = 'danger'
 export type TButtonHeight = 'normal' | 'large' | 'small'
 export type TButtonTextSize = 'normal' | 'small'
@@ -15,7 +15,7 @@ export type TButtonTextSize = 'normal' | 'small'
 //TODO: Add two options for loading (just loader, loader instead of icon)
 
 type TProps = ({
-	variant: TButtonVariant
+	variant: TVariant | 'link' | 'none'
 	loading?: boolean
 	fill?: boolean
 	height?: TButtonHeight
