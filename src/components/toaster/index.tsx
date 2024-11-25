@@ -8,6 +8,8 @@ import CheckMarkLarge from '@/svg/checkMarkLarge'
 import X from '@/svg/x'
 import Button from '../button'
 
+//TODO: Toasters should aggregate
+
 const Toaster = () => {
 	const { message, variant, open, setOpen, extraAction } = useToaster()
 

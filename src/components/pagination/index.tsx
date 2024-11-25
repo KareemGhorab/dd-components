@@ -6,26 +6,24 @@ import styles from './index.module.scss'
 
 type TProps = {
 	totalRows: number
-	pageSizeOptions: number[]
+	limitOptions: number[]
 	page: number
 	setPage: Dispatch<SetStateAction<number>>
-	onChangePage: (page: number) => void
-	pageSize: number
-	setPageSize: Dispatch<SetStateAction<number>>
-	onChangePageSize: (pageSize: number) => void
+	limit: number
+	setLimit: Dispatch<SetStateAction<number>>
+	onChange?: (page: number, limit: number) => void
 }
 
 const Pagination: FC<TProps> = ({
 	totalRows,
-	pageSizeOptions,
+	limitOptions,
 	page,
 	setPage,
-	onChangePage,
-	pageSize,
-	setPageSize,
-	onChangePageSize,
+	limit,
+	setLimit,
+	onChange,
 }) => {
-	const totalPages = Math.ceil(totalRows / pageSize)
+	const totalPages = Math.ceil(totalRows / limit)
 
 	const handlePageChange = (p: number) => {
 		if (p > totalPages || p < 1) return
@@ -46,14 +44,15 @@ const Pagination: FC<TProps> = ({
 		})
 	}
 
-	const handlePageSizeChange = (ps: number) => {
-		if (!pageSizeOptions.includes(ps)) return
-		setPageSize(ps)
+	const handlelimitChange = (ps: number) => {
+		if (!limitOptions.includes(ps)) return
+		setLimit(ps)
 		handlePageChange(1)
 	}
 
-	useEffect(() => onChangePageSize(pageSize), [pageSize])
-	useEffect(() => onChangePage(page), [page])
+	useEffect(() => {
+		onChange && onChange(page, limit)
+	}, [page, limit])
 
 	return (
 		<div className={styles.container}>
@@ -61,15 +60,15 @@ const Pagination: FC<TProps> = ({
 				{/* TODO: Translate */}
 				<p>Rows per page</p>
 				<Select
-					onChange={(ps) => handlePageSizeChange(+ps)}
-					options={pageSizeOptions.map((x) => x.toString())}
-					value={pageSize.toString()}
+					onChange={(ps) => handlelimitChange(+ps)}
+					options={limitOptions.map((x) => x.toString())}
+					value={limit.toString()}
 				/>
 			</div>
 			<p>
 				{/* TODO: Translate */}
-				{1 + (page - 1) * pageSize} -{' '}
-				{Math.min(totalRows, page * pageSize)} of {totalRows}
+				{1 + (page - 1) * limit} -{' '}
+				{Math.min(totalRows, page * limit)} of {totalRows}
 			</p>
 			<div className={styles.arrows}>
 				<div

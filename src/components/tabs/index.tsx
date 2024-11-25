@@ -4,6 +4,8 @@ import clsx from 'clsx'
 import Tag from '../tag'
 import { TVariant } from '@/types/components'
 
+//TODO: Add extra prop for stuff on the right
+
 type TProps = {
 	defaultActiveTab: number
 	tabs: {

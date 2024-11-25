@@ -90,6 +90,11 @@ const MainPage = () => {
 					</Button>
 
 					<Tabs
+						onChange={(active: number) => {
+							updateQueryParams({
+								tab: active.toString(),
+							})
+						}}
 						defaultActiveTab={1}
 						tabs={[
 							{
@@ -212,19 +217,16 @@ const MainPage = () => {
 					<Pagination
 						page={page}
 						setPage={setPage}
-						pageSize={pageSize}
-						setPageSize={setPageSize}
-						onChangePage={(p) =>
-							updateQueryParams({ page: p.toString() })
-						}
+						limit={pageSize}
+						setLimit={setPageSize}
 						totalRows={99}
-						pageSizeOptions={[25, 50, 100]}
-						onChangePageSize={(ps) =>
+						limitOptions={[25, 50, 100]}
+						onChange={(p, ps) => {
 							updateQueryParams({
+								page: p.toString(),
 								limit: ps.toString(),
-								page: '1',
 							})
-						}
+						}}
 					/>
 
 					<Date date='2024-11-19T12:30:00Z' variant='dotted' />
@@ -350,7 +352,7 @@ const MainPage = () => {
 									setFileUploading(false)
 								}, 1000)
 							}}
-							isLoading={fileUploading}
+							// isLoading={fileUploading}
 						/>
 					</div>
 
